@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
+      - claude/deploy-vskrytie74-site-o66ey4
       - main
   workflow_dispatch:
 
