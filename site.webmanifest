@@ -1,0 +1,12 @@
+{
+  "name": "Вскрытие74 — аварийное вскрытие замков в Челябинске",
+  "short_name": "Вскрытие74",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF9F5",
+  "theme_color": "#16150F",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
