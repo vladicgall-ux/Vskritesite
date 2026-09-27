@@ -85,6 +85,12 @@
   @keyframes vsk-ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @keyframes vsk-live{0%,100%{opacity:1}50%{opacity:.2}}
   @media (prefers-reduced-motion:reduce){*{animation:none !important;}}
+  #cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:100;display:none;justify-content:center;padding:14px;background:rgba(22,21,15,.98);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+  #cookie-banner.show{display:flex;}
+  #cookie-banner .cb-inner{width:100%;max-width:480px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  #cookie-banner p{margin:0;flex:1 1 220px;font-size:12px;line-height:1.5;color:#D8CFB8;}
+  #cookie-banner a{color:#E9C978;text-decoration:underline;}
+  #cookie-banner button{flex:none;background:linear-gradient(180deg,#FFD966,#C9A24A 65%,#9A6F16);color:#16150F;border:none;font-family:'Unbounded',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:-.01em;border-radius:10px;padding:11px 16px;cursor:pointer;}
 </style>
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -99,6 +105,12 @@
 <noscript><div><img src="https://mc.yandex.ru/watch/110721316" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </head>
 <body>
+<div id="cookie-banner">
+  <div class="cb-inner">
+    <p>Сайт использует файлы cookie и сервисы аналитики для улучшения работы и статистики посещений. Продолжая использовать сайт, вы соглашаетесь с <a href="/privacy.html">Политикой обработки персональных данных и cookie</a>.</p>
+    <button type="button" id="cookie-accept">Принимаю</button>
+  </div>
+</div>
 
 <div style="width:100%;display:flex;justify-content:center;background:#EFEBE3;font-family:'Golos Text',system-ui,sans-serif;color:#1B1A17;-webkit-font-smoothing:antialiased;">
 <div style="width:100%;max-width:480px;position:relative;overflow:hidden;background:#FBF9F5;box-shadow:0 0 0 1px #E4DED2;padding-bottom:100px;">
@@ -339,6 +351,12 @@
   <footer style="padding:20px 20px 26px;text-align:center;border-top:1px solid #E9E3D6;">
     <div style="font-family:'Unbounded',sans-serif;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#8C8576;">Выезжаем по <b style="color:#16150F;">Челябинску</b> и области</div>
     <div style="margin-top:9px;font-size:10.5px;color:#A29B8C;">Вскрытие74 · Свердловский проспект, 39 · аварийное вскрытие замков</div>
+    <div style="margin-top:14px;font-size:10px;line-height:1.55;color:#A29B8C;max-width:340px;margin-left:auto;margin-right:auto;">
+      Сайт вскрытие74.рф является информационным ресурсом и не оказывает услуги самостоятельно. Сайт не является стороной сделок между посетителем и лицом, оказывающим услугу, и не несёт ответственности за их результат. Все договорённости — между заказчиком и исполнителем.
+    </div>
+    <div style="margin-top:10px;font-size:10.5px;">
+      <a href="/privacy.html" style="color:#9A6F16;">Политика обработки персональных данных и cookie</a>
+    </div>
   </footer>
 </div>
 
@@ -407,6 +425,26 @@
       }
       if (typeof ym !== 'undefined') { ym(110721316, 'reachGoal', 'call_click'); }
     });
+  });
+})();
+</script>
+<script>
+(function () {
+  var STORAGE_KEY = 'vsk74_cookie_consent';
+  var banner = document.getElementById('cookie-banner');
+  var acceptBtn = document.getElementById('cookie-accept');
+  if (!banner || !acceptBtn) return;
+
+  var consented = false;
+  try { consented = localStorage.getItem(STORAGE_KEY) === '1'; } catch (e) {}
+
+  if (!consented) {
+    banner.classList.add('show');
+  }
+
+  acceptBtn.addEventListener('click', function () {
+    try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+    banner.classList.remove('show');
   });
 })();
 </script>
